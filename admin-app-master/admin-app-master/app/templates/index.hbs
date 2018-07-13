@@ -1,0 +1,9 @@
+<div class="flex layout-row layout-wrap layout-xs-column">
+  {{#each model as |region|}}
+    <div class="flex-sm flex-md-50 flex-gt-md-33">
+      {{#link-to "region" region}}
+        <img src="/images/region-logo/{{region.id}}.png">
+      {{/link-to}}
+    </div>
+  {{/each}}
+</div>

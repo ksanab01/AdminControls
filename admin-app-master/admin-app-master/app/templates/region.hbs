@@ -1,0 +1,48 @@
+{{#paper-sidenav-container class="site-nav-container"}}
+  {{#paper-sidenav class="md-whiteframe-z2 site-sidenav" lockedOpen="gt-sm"
+    open=isSidenavOpen onToggle=(action (mut isSidenavOpen))}}
+    {{#paper-toolbar class="site-content-toolbar" as |toolbar|}}
+      {{#paper-toolbar class="site-content-toolbar" tall=true}}
+        <div class="logo layout-row layout-align-center-center">
+          <img alt="Sport Social Club Logo" src="/images/ssc-logo.svg">
+          <div class="layout-column">
+            {{#paper-select
+              label="Region"
+              options=allRegions
+              selected=model
+              onChange=(action 'sendToRegion')
+              as |region|}}
+              {{region.name}}
+            {{/paper-select}}
+          </div>
+        </div>
+      {{/paper-toolbar}}
+    {{/paper-toolbar}}
+
+    {{#paper-content}}
+
+      {{#paper-list}}
+        {{#menu-item onClick=(action (toggle "expandedItem" this "website-management" null)) expanded=(eq expandedItem "website-management") canExpand=true}}Website Management{{/menu-item}}
+
+        <div class="submenu">
+          {{#if (eq expandedItem "website-management")}}
+            {{#submenu-item active=(is-active "index" currentRouteName) href="http://localhost/admin/images.php"}}Image Management{{/submenu-item}}
+            {{#submenu-item active=(is-active "index" currentRouteName) href="http://localhost/admin/advertisement.php"}}Content Management{{/submenu-item}}
+            {{#submenu-item active=(is-active "index" currentRouteName) href="http://localhost/admin/pollsmanager.php"}}Polls Management{{/submenu-item}}
+            {{#submenu-item active=(is-active "index" currentRouteName) href="http://localhost/admin/gallery/admin/index.php"}}Photo Gallery Management{{/submenu-item}}
+            {{#submenu-item active=(is-active "index" currentRouteName) href="http://localhost/admin/homepage.php"}}Homepage / Sidebar Management{{/submenu-item}}
+            {{#submenu-item active=(is-active "index" currentRouteName) href="http://localhost/admin/rules.php"}}Rule Management{{/submenu-item}}
+            {{#submenu-item active=(eq "region.website-management.config" currentRouteName) href=(href-to "region.website-management.config")}}Config{{/submenu-item}}
+          {{/if}}
+        </div>
+      {{/paper-list}}
+
+    {{/paper-content}}
+  {{/paper-sidenav}}
+
+  <div id="main" class="flex layout-column" tabindex="-1" role="main">
+    {{outlet}}
+  </div>
+{{/paper-sidenav-container}}
+
+{{paper-toaster parent="#main"}}

@@ -1,0 +1,25 @@
+{{#if currentConfig}}
+    {{#if showInput}}
+      {{paper-input label='value' value=currentConfig.value onChange=(action (mut currentConfig.value)) }}
+
+      {{#paper-button disabled=(not currentConfig.hasDirtyAttributes) onClick=(action "saveCurrentValue") raised=true primary=true}}Save{{/paper-button}}
+      {{#paper-button onClick=(action "cancelEdit") raised=true}}Cancel{{/paper-button}}
+
+    {{else}}
+      {{currentConfig.value}}
+      {{#paper-button class="actionButton" onClick=(action (toggle 'showInput' this)) iconButton=true }}{{paper-icon "mode edit"}}{{/paper-button}}
+      {{#paper-button class="actionButton" onClick=(action "deleteCurrentValue") iconButton=true }}{{paper-icon "delete"}}{{/paper-button}}
+    {{/if}}
+
+{{else}}
+
+  {{#if showInput}}
+    {{paper-input label='value' value=newValue onChange=(action (mut newValue)) }}
+
+    {{#paper-button onClick=(action "saveNewValue") raised=true primary=true}}Save{{/paper-button}}
+    {{#paper-button onClick=(action (toggle 'showInput' this)) raised=true}}Cancel{{/paper-button}}
+  {{else}}
+
+    {{#paper-button  onClick=(action (toggle 'showInput' this)) iconButton=true}}{{paper-icon "add"}}{{/paper-button}}
+  {{/if}}
+{{/if}}

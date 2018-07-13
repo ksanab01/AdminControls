@@ -1,0 +1,14 @@
+{
+  "name": "tssc-admin-helpers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chris Manson <chris@stonecircle.io>",
+  "license": "UNLICENCED",
+  "dependencies": {
+    "require-directory": "^2.1.1"
+  }
+}

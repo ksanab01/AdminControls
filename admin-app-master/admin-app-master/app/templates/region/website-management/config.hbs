@@ -1,0 +1,16 @@
+{{#paper-data-table sortProp="name" sortDir="desc" selectable=true as |table|}}
+  {{#table.head as |head|}}
+    {{#head.column}}Key{{/head.column}}
+    {{#head.column}}Value{{/head.column}}
+  {{/table.head}}
+  {{#table.body as |body|}}
+    {{#each model.availableConfigs as |availableConfig|}}
+      {{#body.row class="valueRow" edit=true as |row| }}
+        {{#row.cell}}{{availableConfig.key}}{{/row.cell}}
+        {{#row.cell as |cell|}}
+          {{config-value availableConfig=availableConfig configs=model.configs regionId=model.regionId}}
+        {{/row.cell}}
+      {{/body.row}}
+    {{/each}}
+  {{/table.body}}
+{{/paper-data-table}}
